@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Security Headers via Meta Tags -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+  <title>FOUNDER BUSINESS CONNECTION | Direct B2B Business Network</title>
+  
+  <!-- Tailwind CSS CDN with dark:class configuration -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {}
+      }
+    }
+  </script>
+
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-bw-grid bg-neutral-50 dark:bg-black text-neutral-900 dark:text-neutral-100 min-h-screen">
+
+  <!-- ========================================================================
+       Top Navigation Bar
+       ======================================================================== -->
+  <header class="sticky top-0 z-40 bg-white/95 dark:bg-black/95 backdrop-blur-md border-b border-neutral-200 dark:border-neutral-800 transition-colors duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 py-3.5 flex items-center justify-between">
+      
+      <!-- Brand Logo & Platform Title -->
+      <a href="#" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-black text-white dark:bg-white dark:text-black flex items-center justify-center font-black text-lg font-display shadow-sm">
+          FB
+        </div>
+        <div>
+          <span class="font-display font-extrabold text-lg tracking-tight text-neutral-900 dark:text-white block leading-tight">
+            FOUNDER BUSINESS CONNECTION
+          </span>
+          <span class="text-[10px] text-neutral-500 dark:text-neutral-400 font-semibold uppercase tracking-wider block">
+            Direct B2B Network • All Industries
+          </span>
+        </div>
+      </a>
+
+      <!-- Right Action Controls -->
+      <div class="flex items-center gap-2.5 sm:gap-3">
+        
+        <!-- Dark / Light Theme Toggle -->
+        <button id="theme-toggle" class="px-3 py-1.5 rounded-xl border border-neutral-300 dark:border-neutral-700 bg-neutral-100 dark:bg-neutral-900 hover:border-black dark:hover:border-white text-neutral-800 dark:text-neutral-200 text-xs font-semibold flex items-center gap-1.5 transition" title="Toggle Dark / Light Mode">
+          <i id="theme-icon" class="fa-solid fa-sun text-xs"></i>
+          <span id="theme-text" class="hidden sm:inline">Light Mode</span>
+        </button>
+
+        <!-- Dynamic Auth Buttons (Login / Register / Profile / Logout) -->
+        <div id="auth-header-container">
+          <!-- Injected dynamically by js/app.js -->
+        </div>
+
+        <!-- "My Business Profile" Button (Visible when logged in) -->
+        <button id="nav-profile-btn" onclick="openListBusinessModal()" class="px-3.5 py-1.5 rounded-xl bg-black text-white dark:bg-white dark:text-black hover:opacity-90 font-bold text-xs shadow-sm hidden transition">
+          <i class="fa-solid fa-store text-xs"></i> My Business
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       Top Auth Status Banner
+       ======================================================================== -->
+  <div id="auth-status-banner" class="border-b border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-950 transition-colors duration-200">
+    <!-- Injected dynamically by js/app.js -->
+  </div>
+
+  <!-- ========================================================================
+       VIEW 1: PUBLIC LANDING PAGE (VISIBLE ONLY BEFORE LOGIN)
+       No companies are shown here - Purely Website Intro, Features & Benefits
+       ======================================================================== -->
+  <div id="public-landing-view">
+    
+    <!-- Hero Intro Section -->
+    <section class="py-16 sm:py-24 border-b border-neutral-200 dark:border-neutral-800 text-center">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6">
+        
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-neutral-300 dark:border-neutral-700 bg-neutral-100 dark:bg-neutral-900 text-xs font-bold text-neutral-800 dark:text-neutral-300 mb-6">
+          <span class="w-2 h-2 rounded-full bg-black dark:bg-white animate-pulse"></span>
+          <span>India's Open Direct-Connect Network for Real-World Businesses</span>
+        </div>
+
+        <h1 class="font-display font-extrabold text-4xl sm:text-6xl text-neutral-950 dark:text-white tracking-tight leading-tight mb-5">
+          Connect Directly With Founders & Manufacturers
+        </h1>
+
+        <p class="text-base sm:text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto leading-relaxed mb-8">
+          A dedicated B2B platform connecting business owners in <strong class="text-neutral-900 dark:text-white">Textiles, Manufacturing, Food & Spices, Import-Export, Construction, Wholesale, and Services</strong>. Zero middlemen, zero commission.
+        </p>
+
+        <!-- Primary Call to Action Buttons -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-10">
+          <button onclick="openAuthModal('register')" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-black text-white dark:bg-white dark:text-black hover:opacity-90 font-bold text-sm shadow-lg transition">
+            <i class="fa-solid fa-user-plus text-xs"></i> Create Free Account
+          </button>
+          <button onclick="openAuthModal('login')" class="w-full sm:w-auto px-8 py-3.5 rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 hover:border-black dark:hover:border-white text-neutral-900 dark:text-white font-bold text-sm transition">
+            <i class="fa-solid fa-lock text-xs"></i> Log In to View Companies
+          </button>
+        </div>
+
+        <!-- Privacy & Protection Note -->
+        <p class="text-xs text-neutral-500 flex items-center justify-center gap-2">
+          <i class="fa-solid fa-shield-halved text-neutral-500"></i> Company listings & contact details are protected. Log in to explore the directory.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- Platform Features / How It Works -->
+    <section class="py-16 border-b border-neutral-200 dark:border-neutral-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="inline-block px-3 py-1 rounded-full text-xs font-bold border border-neutral-300 dark:border-neutral-700 bg-neutral-100 dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300 mb-2">Platform Highlights</span>
+          <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-neutral-950 dark:text-white">Why Founder Business Connection?</h2>
+          <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-1">Built specifically for MSMEs, factory owners, traders, and founders to trade and collaborate with complete transparency.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <div class="p-6 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-sm space-y-3">
+            <div class="w-10 h-10 rounded-xl bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 flex items-center justify-center text-neutral-900 dark:text-white text-lg font-bold">
+              <i class="fa-brands fa-whatsapp"></i>
+            </div>
+            <h3 class="font-display font-bold text-lg text-neutral-900 dark:text-white">1-Click Direct WhatsApp</h3>
+            <p class="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              No long email threads or broker fees. Connect directly on WhatsApp with factory owners, distributors, and bulk buyers.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-sm space-y-3">
+            <div class="w-10 h-10 rounded-xl bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 flex items-center justify-center text-neutral-900 dark:text-white text-lg font-bold">
+              <i class="fa-solid fa-industry"></i>
+            </div>
+            <h3 class="font-display font-bold text-lg text-neutral-900 dark:text-white">All Real-World Industries</h3>
+            <p class="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              Not just tech. From Surat looms to Rajkot CNC units, Unjha spice processors, and Mundra port logistics handlers.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-sm space-y-3">
+            <div class="w-10 h-10 rounded-xl bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 flex items-center justify-center text-neutral-900 dark:text-white text-lg font-bold">
+              <i class="fa-solid fa-user-check"></i>
+            </div>
+            <h3 class="font-display font-bold text-lg text-neutral-900 dark:text-white">Verified Founder Profiles</h3>
+            <p class="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed">
+              Every member lists their exact production capabilities and what kind of commercial partners they are seeking.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Sectors & Industries Covered Breakdown -->
+    <section class="py-16 border-b border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-950/40">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <span class="inline-block px-3 py-1 rounded-full text-xs font-bold border border-neutral-300 dark:border-neutral-700 bg-neutral-100 dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300 mb-2">Sectors Covered</span>
+          <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-neutral-950 dark:text-white">Discover Companies Across 10+ Sectors</h2>
+          <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mt-1">Log in to search and connect with businesses in any of these categories:</p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 text-center">
+          
+          <div class="p-4 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 space-y-2">
+            <i class="fa-solid fa-shirt text-xl text-neutral-900 dark:text-white"></i>
+            <h4 class="font-bold text-xs text-neutral-900 dark:text-white">Textile & Garments</h4>
+            <p class="text-[10px] text-neutral-500 dark:text-neutral-400">Rayon, Cotton, Sarees & Looms</p>
+          </div>
+
+          <div class="p-4 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 space-y-2">
+            <i class="fa-solid fa-industry text-xl text-neutral-900 dark:text-white"></i>
+            <h4 class="font-bold text-xs text-neutral-900 dark:text-white">Manufacturing & CNC</h4>
+            <p class="text-[10px] text-neutral-500 dark:text-neutral-400">Brass, Fasteners, Precision Auto</p>
+          </div>
+
+          <div class="p-4 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 space-y-2">
+            <i class="fa-solid fa-bowl-food text-xl text-neutral-900 dark:text-white"></i>
+            <h4 class="font-bold text-xs text-neutral-900 dark:text-white">Food & Spices</h4>
+            <p class="text-[10px] text-neutral-500 dark:text-neutral-400">Jeera, Saunf, Ground Spices</p>
+          </div>
+
+          <div class="p-4 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 space-y-2">
+            <i class="fa-solid fa-ship text-xl text-neutral-900 dark:text-white"></i>
+            <h4 class="font-bold text-xs text-neutral-900 dark:text-white">Import & Export</h4>
+            <p class="text-[10px] text-neutral-500 dark:text-neutral-400">Mundra Freight & Customs Exim</p>
+          </div>
+
+          <div class="p-4 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 space-y-2">
+            <i class="fa-solid fa-building text-xl text-neutral-900 dark:text-white"></i>
+            <h4 class="font-bold text-xs text-neutral-900 dark:text-white">Construction & Infra</h4>
+            <p class="text-[10px] text-neutral-500 dark:text-neutral-400">Precast Walls & Industrial Sheds</p>
+          </div>
+
+          <div class="p-4 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 space-y-2">
+            <i class="fa-solid fa-wheat-awn text-xl text-neutral-900 dark:text-white"></i>
+            <h4 class="font-bold text-xs text-neutral-900 dark:text-white">Agriculture & Dairy</h4>
+            <p class="text-[10px] text-neutral-500 dark:text-neutral-400">A2 Ghee, Dairy Bulk Raw Material</p>
+          </div>
+
+          <div class="p-4 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 space-y-2">
+            <i class="fa-solid fa-store text-xl text-neutral-900 dark:text-white"></i>
+            <h4 class="font-bold text-xs text-neutral-900 dark:text-white">Retail & Wholesale</h4>
+            <p class="text-[10px] text-neutral-500 dark:text-neutral-400">Electrical Super-Stockists</p>
+          </div>
+
+          <div class="p-4 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 space-y-2">
+            <i class="fa-solid fa-hospital text-xl text-neutral-900 dark:text-white"></i>
+            <h4 class="font-bold text-xs text-neutral-900 dark:text-white">Pharma & Health</h4>
+            <p class="text-[10px] text-neutral-500 dark:text-neutral-400">WHO-GMP & PCD Franchise</p>
+          </div>
+
+          <div class="p-4 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 space-y-2">
+            <i class="fa-solid fa-briefcase text-xl text-neutral-900 dark:text-white"></i>
+            <h4 class="font-bold text-xs text-neutral-900 dark:text-white">Professional Services</h4>
+            <p class="text-[10px] text-neutral-500 dark:text-neutral-400">CA, GST Audit & MSME Subsidies</p>
+          </div>
+
+          <div class="p-4 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50 dark:bg-neutral-900 space-y-2">
+            <i class="fa-solid fa-laptop-code text-xl text-neutral-900 dark:text-white"></i>
+            <h4 class="font-bold text-xs text-neutral-900 dark:text-white">Tech & Software</h4>
+            <p class="text-[10px] text-neutral-500 dark:text-neutral-400">GST Billing & ERP Systems</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Locked Directory Callout CTA Banner -->
+    <section class="py-16 text-center">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 space-y-5">
+        <div class="w-14 h-14 mx-auto rounded-2xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex items-center justify-center text-2xl text-neutral-900 dark:text-white shadow-sm">
+          <i class="fa-solid fa-lock"></i>
+        </div>
+        <h2 class="font-display font-extrabold text-3xl text-neutral-950 dark:text-white">
+          Access the Complete Business Directory
+        </h2>
+        <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 max-w-lg mx-auto leading-relaxed">
+          Log in or create your free account now to search verified company listings, access direct WhatsApp contacts, and publish your own company profile.
+        </p>
+        <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <button onclick="openAuthModal('register')" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-black text-white dark:bg-white dark:text-black hover:opacity-90 font-bold text-xs shadow-md transition">
+            <i class="fa-solid fa-user-plus"></i> Sign Up in 10 Seconds
+          </button>
+          <button onclick="openAuthModal('login')" class="w-full sm:w-auto px-6 py-3 rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 hover:border-black dark:hover:border-white text-neutral-900 dark:text-white font-bold text-xs transition">
+            <i class="fa-solid fa-lock"></i> Log In to View Directory
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ========================================================================
+       VIEW 2: MEMBER DIRECTORY VIEW (VISIBLE ONLY AFTER LOGIN)
+       Search, Category Pills, and All Company Cards Live Here
+       ======================================================================== -->
+  <div id="member-directory-view" class="hidden">
+    
+    <!-- Member Search & Header Section -->
+    <section class="py-10 border-b border-neutral-200 dark:border-neutral-800 bg-neutral-100 dark:bg-neutral-950/40 transition-colors">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+        
+        <h1 class="font-display font-extrabold text-3xl sm:text-4xl text-neutral-950 dark:text-white tracking-tight leading-tight mb-2">
+          Verified Business Directory
+        </h1>
+        <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 mb-6">
+          Search and connect directly with verified founders, manufacturers, and traders across all industries.
+        </p>
+
+        <!-- Search Bar -->
+        <div class="max-w-2xl mx-auto relative mb-3">
+          <div class="relative flex items-center">
+            <i class="fa-solid fa-magnifying-glass absolute left-4 text-neutral-400 text-sm"></i>
+            <input id="search-box" type="text" placeholder="Search by Company Name, City (Surat, Rajkot, Ahmedabad) or Product..." class="w-full bg-white dark:bg-neutral-900 border border-neutral-300 dark:border-neutral-700 rounded-2xl pl-11 pr-24 py-3.5 text-sm text-neutral-900 dark:text-white placeholder-neutral-400 dark:placeholder-neutral-500 focus:outline-none focus:border-black dark:focus:border-white transition shadow-sm">
+            <button onclick="resetAllFilters()" class="absolute right-3 px-3 py-1.5 rounded-lg bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 hover:text-black dark:hover:text-white text-xs font-semibold">
+              Reset
+            </button>
+          </div>
+        </div>
+
+        <!-- Quick Search Tags -->
+        <div class="flex flex-wrap items-center justify-center gap-1.5 text-xs text-neutral-600 dark:text-neutral-400">
+          <span class="text-neutral-400 dark:text-neutral-500 text-[11px]">Popular:</span>
+          <button class="quick-tag px-2.5 py-1 rounded-lg border border-neutral-300 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:border-black dark:hover:border-white text-neutral-800 dark:text-neutral-300 text-[11px]" data-query="Textile Surat">Textile Surat</button>
+          <button class="quick-tag px-2.5 py-1 rounded-lg border border-neutral-300 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:border-black dark:hover:border-white text-neutral-800 dark:text-neutral-300 text-[11px]" data-query="Precision Rajkot">CNC & Brass Rajkot</button>
+          <button class="quick-tag px-2.5 py-1 rounded-lg border border-neutral-300 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:border-black dark:hover:border-white text-neutral-800 dark:text-neutral-300 text-[11px]" data-query="Spices">Spices & FMCG</button>
+          <button class="quick-tag px-2.5 py-1 rounded-lg border border-neutral-300 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:border-black dark:hover:border-white text-neutral-800 dark:text-neutral-300 text-[11px]" data-query="Mundra Logistics">Mundra Exim Logistics</button>
+          <button class="quick-tag px-2.5 py-1 rounded-lg border border-neutral-300 dark:border-neutral-800 bg-white dark:bg-neutral-900 hover:border-black dark:hover:border-white text-neutral-800 dark:text-neutral-300 text-[11px]" data-query="Construction">Precast & Construction</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Multi-Industry Category Bar (Sticky) -->
+    <section class="py-4 border-b border-neutral-200 dark:border-neutral-800 sticky top-[68px] z-30 bg-white/95 dark:bg-black/95 backdrop-blur-md transition-colors">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div id="category-pills-container" class="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
+          <!-- Injected dynamically by js/app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Company Cards Grid -->
+    <main class="py-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Results Header -->
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-6 pb-2 border-b border-neutral-200 dark:border-neutral-800">
+          <div>
+            <span id="results-count" class="font-display font-bold text-sm text-neutral-800 dark:text-neutral-300 uppercase tracking-wider">
+              Showing All Companies
+            </span>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2">
+            <!-- Bookmarks filter toggle -->
+            <button id="bookmark-filter-btn" onclick="toggleBookmarkFilter()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 hover:border-black dark:hover:border-white text-xs font-semibold text-neutral-600 dark:text-neutral-300 transition">
+              <i class="fa-regular fa-bookmark text-[11px]"></i> Saved
+            </button>
+            <!-- Sort dropdown -->
+            <select id="sort-select" onchange="handleSortChange(this.value)" class="px-3 py-1.5 rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-700 dark:text-neutral-300 text-xs font-semibold focus:outline-none focus:border-black dark:focus:border-white cursor-pointer transition">
+              <option value="default">Default Order</option>
+              <option value="rating">&#9733; Top Rated</option>
+              <option value="newest">Newest First</option>
+            </select>
+            <button onclick="openListBusinessModal()" class="text-xs text-neutral-600 dark:text-neutral-400 hover:text-black dark:hover:text-white font-semibold underline underline-offset-4">
+              + My Company
+            </button>
+          </div>
+        </div>
+
+        <!-- Grid of Companies -->
+        <div id="business-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+          <!-- Injected dynamically by js/app.js -->
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- ========================================================================
+       Clean Monochrome Footer
+       ======================================================================== -->
+  <footer class="border-t border-neutral-200 dark:border-neutral-800 py-8 bg-white dark:bg-black transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500">
+      <div class="flex items-center gap-2">
+        <span class="font-display font-bold text-neutral-900 dark:text-white">FOUNDER BUSINESS CONNECTION</span>
+        <span>• Direct B2B Network</span>
+      </div>
+      <div>
+        Monochrome Edition • Log in to access the active company directory
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       Universal Dynamic Modal (Login / Register / Profile / Inquiries)
+       ======================================================================== -->
+  <div id="main-modal" class="fixed inset-0 z-50 modal-overlay flex items-center justify-center p-4 hidden">
+    <div class="p-6 max-w-lg w-full relative shadow-2xl rounded-2xl bg-white dark:bg-neutral-950 border border-neutral-300 dark:border-neutral-800 text-neutral-900 dark:text-white">
+      <button onclick="closeMainModal()" class="absolute top-4 right-4 text-neutral-400 hover:text-black dark:hover:text-white p-2 text-sm transition">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div id="modal-body">
+        <!-- Injected dynamically by js/app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       Interactive Image Crop & Adjuster Modal (Reposition & Zoom)
+       ======================================================================== -->
+  <div id="crop-modal" class="fixed inset-0 z-[60] modal-overlay flex items-center justify-center p-4 hidden">
+    <div class="p-5 max-w-md w-full relative shadow-2xl rounded-2xl bg-white dark:bg-neutral-950 border border-neutral-300 dark:border-neutral-800 text-neutral-900 dark:text-white">
+      
+      <!-- Crop Header -->
+      <div class="flex items-center justify-between pb-3 border-b border-neutral-200 dark:border-neutral-800 mb-3">
+        <div>
+          <h3 id="crop-modal-title" class="font-display font-bold text-base text-neutral-900 dark:text-white">Adjust & Position Photo</h3>
+          <p class="text-[11px] text-neutral-500">Drag to move • Slider to zoom</p>
+        </div>
+        <button onclick="closeCropModal()" class="text-neutral-400 hover:text-black dark:hover:text-white p-1 text-sm">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Interactive Viewport -->
+      <div class="relative w-full flex flex-col items-center justify-center bg-neutral-900 rounded-xl overflow-hidden py-3 select-none">
+        
+        <!-- Viewport Container -->
+        <div id="crop-viewport" class="relative overflow-hidden cursor-grab active:cursor-grabbing border-2 border-dashed border-white/60 shadow-inner flex items-center justify-center">
+          <img id="crop-target-img" class="max-w-none origin-center pointer-events-none transition-transform duration-75 select-none" src="" alt="Adjusting Image">
+          
+          <!-- Mask Guide Overlay -->
+          <div id="crop-mask-guide" class="absolute inset-0 pointer-events-none border border-white/40 shadow-[0_0_0_9999px_rgba(0,0,0,0.5)]"></div>
+        </div>
+
+        <span class="text-[10px] text-white/70 mt-2 font-medium">
+          <i class="fa-solid fa-arrows-up-down-left-right mr-1"></i> Click & Drag to reposition photo
+        </span>
+      </div>
+
+      <!-- Controls: Zoom & Rotate -->
+      <div class="space-y-2.5 mt-3 pt-2 text-xs">
+        
+        <!-- Zoom Slider -->
+        <div class="flex items-center gap-2">
+          <button type="button" onclick="stepCropZoom(-0.1)" class="w-7 h-7 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 flex items-center justify-center font-bold">
+            <i class="fa-solid fa-magnifying-glass-minus text-[10px]"></i>
+          </button>
+          
+          <input id="crop-zoom-slider" type="range" min="0.5" max="3.0" step="0.05" value="1.0" class="flex-1 accent-black dark:accent-white cursor-pointer h-1.5 bg-neutral-200 dark:bg-neutral-800 rounded-lg">
+          
+          <button type="button" onclick="stepCropZoom(0.1)" class="w-7 h-7 rounded-lg border border-neutral-300 dark:border-neutral-700 bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 flex items-center justify-center font-bold">
+            <i class="fa-solid fa-magnifying-glass-plus text-[10px]"></i>
+          </button>
+        </div>
+
+        <!-- Rotate & Center -->
+        <div class="flex items-center justify-between text-[11px] text-neutral-500 pt-1">
+          <button type="button" onclick="rotateCropImage()" class="flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-neutral-300 dark:border-neutral-700 hover:border-black dark:hover:border-white text-neutral-800 dark:text-neutral-200">
+            <i class="fa-solid fa-rotate-right"></i> Rotate 90°
+          </button>
+          
+          <button type="button" onclick="resetCropPosition()" class="flex items-center gap-1 px-2.5 py-1 rounded-lg border border-neutral-300 dark:border-neutral-700 hover:border-black dark:hover:border-white text-neutral-800 dark:text-neutral-200">
+            <i class="fa-solid fa-arrows-rotate"></i> Reset
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center justify-end gap-2 mt-4 pt-3 border-t border-neutral-200 dark:border-neutral-800">
+        <button type="button" onclick="closeCropModal()" class="px-4 py-2 rounded-xl border border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 hover:border-black dark:hover:border-white text-xs font-semibold">
+          Cancel
+        </button>
+        <button type="button" onclick="applyCropImage()" class="px-5 py-2 rounded-xl bg-black text-white dark:bg-white dark:text-black font-bold text-xs hover:opacity-90 shadow-sm flex items-center gap-1.5">
+          <i class="fa-solid fa-check"></i> Set & Apply Photo
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
